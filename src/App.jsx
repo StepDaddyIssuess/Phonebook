@@ -19,7 +19,7 @@ const App = () => {
     personService
       .getAllPersons()
       .then(response => {
-        setPersons(response.data)
+        setPersons(response)
       })
   }, [])
 
@@ -38,8 +38,7 @@ const App = () => {
       personService
         .updatePerson(person.id, newObject)
         .then((updatedPerson) => {
-          console.log(updatedPerson.data)
-          setPersons(persons.map((p) => (p.id !== person.id ? p : updatedPerson.data)))
+          setPersons(persons.map((p) => (p.id !== person.id ? p : updatedPerson)))
 
           // update message
           setMessage(`Number of ${person.name} is changed!`)
@@ -78,18 +77,20 @@ const App = () => {
       return;
     }
 
+    console.log(newName)
+
     const newPersonObject = {
       name: newName,
       number: newNumber,
-      id: String(persons.length + 1),
+      id: String()
     }
 
     personService.addNewPerson(newPersonObject)
-      .then(() => {
+      .then((updatedPerson) => {
+        setPersons(persons.concat(updatedPerson));
+        setMessage(`Added ${updatedPerson.name}`)
         setNewName("")
         setNewNumber("")
-        setPersons(persons.concat(newPersonObject));
-        setMessage(`Added ${newName}`)
       }).catch(error => {
       setErrorMessage(error.response.data.error)
     })
@@ -157,6 +158,8 @@ const App = () => {
         handleNewNameChange={handleNewNameChange}
         handleNewNumberChange={handleNewNumberChange}
         handleSubmitNewPerson={handleSubmitNewPerson}
+        newNumber={newNumber}
+        newName={newName}
       />
 
 

@@ -2,19 +2,23 @@ import axios from "axios";
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const getAllPersons = () => {
-    return axios.get(`${baseUrl}`)
+    const req = axios.get(`${baseUrl}`)
+    return req.then(res => res.data)
 }
 
 const addNewPerson = (newObject) => {
-    return axios.post(baseUrl, newObject)
+    const req = axios.post(baseUrl, newObject)
+    return req.then(res => res.data)
 }
 
 const deletePerson = (id) => {
-    return axios.delete(`${baseUrl}/${id}`)
+    const req = axios.delete(`${baseUrl}/${id}`)
+    return req.then(res => res.data)
 }
 
 const updatePerson = (id, newObject) => {
-    return axios.put(`${baseUrl}/${id}`, newObject)
+    const req = axios.put(`${baseUrl}/${id}`, newObject)
+    return req.then(res => res.data)
 }
 
 
