@@ -86,9 +86,9 @@ const App = () => {
 
     personService.addNewPerson(newPersonObject)
       .then(() => {
-        setPersons(persons.concat(newPersonObject));
         setNewName("")
         setNewNumber("")
+        setPersons(persons.concat(newPersonObject));
         setMessage(`Added ${newName}`)
       }).catch(error => {
       setErrorMessage(error.response.data.error)
