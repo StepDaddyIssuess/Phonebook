@@ -53,6 +53,7 @@ const App = () => {
 
           setTimeout(() => {
             setMessage("")
+            setErrorMessage("")
           }, 5000);
         })
     }
@@ -97,6 +98,7 @@ const App = () => {
 
     setTimeout(() => {
       setMessage("")
+      setErrorMessage("")
     }, 5000)
   }
 
