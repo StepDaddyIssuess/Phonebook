@@ -84,12 +84,16 @@ const App = () => {
     }
 
     personService.addNewPerson(newPersonObject)
-    setPersons(persons.concat(newPersonObject));
-    setNewName("")
-    setNewNumber("")
+      .then(() => {
+        setPersons(persons.concat(newPersonObject));
+        setNewName("")
+        setNewNumber("")
+        setMessage(`Added ${newName}`)
+      }).catch(error => {
+      setErrorMessage(error.response.data.error)
+    })
 
     // message
-    setMessage(`Added ${newName}`)
 
     setTimeout(() => {
       setMessage("")
@@ -99,6 +103,8 @@ const App = () => {
   const deletePerson = (person) => {
 
     const deleteConfirmation = window.confirm(`Do you wanne delete ${person.name}`)
+
+    console.log(person)
 
     if (deleteConfirmation) {
       personService.deletePerson(person.id)
