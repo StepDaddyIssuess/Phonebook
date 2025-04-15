@@ -4,7 +4,7 @@ const PersonForm = ({handleSubmitNewPerson, handleNewNameChange, handleNewNumber
             <div>
             name
             <input onChange={handleNewNameChange} />
-            <div>number: <input onChange={handleNewNumberChange}  type='number'/></div>
+            <div>number: <input onChange={handleNewNumberChange} /></div>
             </div>
             <div>
             <button type="submit">add</button>

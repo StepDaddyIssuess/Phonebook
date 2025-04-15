@@ -40,16 +40,16 @@ const App = () => {
         .then((updatedPerson) => {
           console.log(updatedPerson.data)
           setPersons(persons.map((p) => (p.id !== person.id ? p : updatedPerson.data)))
+
+          // update message
+          setMessage(`Number of ${person.name} is changed!`)
         })
         .catch((error) => {
           console.log(person)
           if (error.response.status === 404) {
-            setErrorMessage(`Information of ${person.name} has already been removed`)
+            setErrorMessage(error.response.data.error)
             setPersons(persons.filter((p) => p.id !== person.id))
         }
-          
-          // update message
-          setMessage(`Number of ${person.name} is changed!`)
 
           setTimeout(() => {
             setMessage("")
