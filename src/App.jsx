@@ -46,8 +46,8 @@ const App = () => {
         })
         .catch((error) => {
           console.log(person)
+          setErrorMessage(error.response.data.error)
           if (error.response.status === 404) {
-            setErrorMessage(error.response.data.error)
             setPersons(persons.filter((p) => p.id !== person.id))
         }
 
